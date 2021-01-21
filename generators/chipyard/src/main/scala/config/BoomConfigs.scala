@@ -82,6 +82,65 @@ class MegaBoomConfig extends Config(
   new freechips.rocketchip.subsystem.WithCoherentBusTopology ++
   new freechips.rocketchip.system.BaseConfig)
 
+class GigaBoomConfig extends Config(
+  new chipyard.iobinders.WithUARTAdapter ++
+  new chipyard.iobinders.WithTieOffInterrupts ++
+  new chipyard.iobinders.WithBlackBoxSimMem ++
+  new chipyard.iobinders.WithTiedOffDebug ++
+  new chipyard.iobinders.WithSimSerial ++
+  new testchipip.WithTSI ++
+  new chipyard.config.WithBootROM ++
+  new chipyard.config.WithUART ++
+  new chipyard.config.WithL2TLBs(1024) ++
+  new freechips.rocketchip.subsystem.WithNoMMIOPort ++
+  new freechips.rocketchip.subsystem.WithNoSlavePort ++
+  new freechips.rocketchip.subsystem.WithInclusiveCache ++
+  new freechips.rocketchip.subsystem.WithNExtTopInterrupts(0) ++
+  new boom.common.WithGigaBooms ++                              // giga boom config
+  new boom.common.WithNBoomCores(1) ++
+  new freechips.rocketchip.subsystem.WithCoherentBusTopology ++
+  new freechips.rocketchip.system.BaseConfig)
+
+class TeraBoomConfig extends Config(
+  new chipyard.iobinders.WithUARTAdapter ++
+    new chipyard.iobinders.WithTieOffInterrupts ++
+    new chipyard.iobinders.WithBlackBoxSimMem ++
+    new chipyard.iobinders.WithTiedOffDebug ++
+    new chipyard.iobinders.WithSimSerial ++
+    new testchipip.WithTSI ++
+    new chipyard.config.WithBootROM ++
+    new chipyard.config.WithUART ++
+    new chipyard.config.WithL2TLBs(1024) ++
+    new freechips.rocketchip.subsystem.WithNoMMIOPort ++
+    new freechips.rocketchip.subsystem.WithNoSlavePort ++
+    new freechips.rocketchip.subsystem.WithInclusiveCache ++
+    new freechips.rocketchip.subsystem.WithNExtTopInterrupts(0) ++
+    new boom.common.WithTeraBooms ++                              // giga boom config
+    new boom.common.WithNBoomCores(1) ++
+    new freechips.rocketchip.subsystem.WithCoherentBusTopology ++
+    new freechips.rocketchip.system.BaseConfig)
+
+
+class StrangeBoomConfig extends Config(
+  new chipyard.iobinders.WithUARTAdapter ++
+    new chipyard.iobinders.WithTieOffInterrupts ++
+    new chipyard.iobinders.WithBlackBoxSimMem ++
+    new chipyard.iobinders.WithTiedOffDebug ++
+    new chipyard.iobinders.WithSimSerial ++
+    new testchipip.WithTSI ++
+    new chipyard.config.WithBootROM ++
+    new chipyard.config.WithUART ++
+    new chipyard.config.WithL2TLBs(1024) ++
+    new freechips.rocketchip.subsystem.WithNoMMIOPort ++
+    new freechips.rocketchip.subsystem.WithNoSlavePort ++
+    new freechips.rocketchip.subsystem.WithInclusiveCache ++
+    new freechips.rocketchip.subsystem.WithNExtTopInterrupts(0) ++
+    new boom.common.WithStrangeBooms ++                              // giga boom config
+    new boom.common.WithNBoomCores(1) ++
+    new freechips.rocketchip.subsystem.WithCoherentBusTopology ++
+    new freechips.rocketchip.system.BaseConfig)
+
+
 class DualSmallBoomConfig extends Config(
   new chipyard.iobinders.WithUARTAdapter ++
   new chipyard.iobinders.WithTieOffInterrupts ++
@@ -183,4 +242,3 @@ class DromajoBoomConfig extends Config(
   new boom.common.WithNBoomCores(1) ++
   new freechips.rocketchip.subsystem.WithCoherentBusTopology ++
   new freechips.rocketchip.system.BaseConfig)
-
