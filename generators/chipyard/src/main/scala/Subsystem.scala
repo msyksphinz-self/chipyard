@@ -23,6 +23,7 @@ import freechips.rocketchip.amba.axi4._
 
 import boom.common.{BoomTile, BoomTilesKey, BoomCrossingKey, BoomTileParams}
 import ariane.{ArianeTile, ArianeTilesKey, ArianeCrossingKey, ArianeTileParams}
+import msrh.{MSRHTile, MSRHTilesKey, MSRHCrossingKey, MSRHTileParams}
 
 import testchipip.{DromajoHelper}
 
@@ -37,13 +38,15 @@ trait HasChipyardTiles extends HasTiles
   protected val rocketTileParams = p(RocketTilesKey)
   protected val boomTileParams = p(BoomTilesKey)
   protected val arianeTileParams = p(ArianeTilesKey)
+  protected val msrhTileParams = p(MSRHTilesKey)
 
   // crossing can either be per tile or global (aka only 1 crossing specified)
   private val rocketCrossings = perTileOrGlobalSetting(p(RocketCrossingKey), rocketTileParams.size)
   private val boomCrossings = perTileOrGlobalSetting(p(BoomCrossingKey), boomTileParams.size)
   private val arianeCrossings = perTileOrGlobalSetting(p(ArianeCrossingKey), arianeTileParams.size)
+  private val msrhCrossings = perTileOrGlobalSetting(p(MSRHCrossingKey), msrhTileParams.size)
 
-  val allTilesInfo = (rocketTileParams ++ boomTileParams ++ arianeTileParams) zip (rocketCrossings ++ boomCrossings ++ arianeCrossings)
+  val allTilesInfo = (rocketTileParams ++ boomTileParams ++ arianeTileParams ++ msrhTileParams) zip (rocketCrossings ++ boomCrossings ++ arianeCrossings ++ msrhCrossings)
 
   // Make a tile and wire its nodes into the system,
   // according to the specified type of clock crossing.
@@ -64,6 +67,9 @@ trait HasChipyardTiles extends HasTiles
         }
         case a: ArianeTileParams => {
           LazyModule(new ArianeTile(a, crossing, PriorityMuxHartIdFromSeq(arianeTileParams), logicalTreeNode))
+        }
+        case m: MSRHTileParams => {
+          LazyModule(new MSRHTile(m, crossing, PriorityMuxHartIdFromSeq(msrhTileParams), logicalTreeNode))
         }
       }
       connectMasterPortsToSBus(tile, crossing)
